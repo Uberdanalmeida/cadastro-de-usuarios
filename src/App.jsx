@@ -13,8 +13,8 @@ export default function App() {
           <input type="email" id="email" name="email" />
         </div>
         <div>
-          <label htmlFor="idade">Idade:</label>
-          <input type="number" id="idade" name="idade" />
+          <label htmlFor="senha">Senha:</label>
+          <input type="password" id="senha" name="senha" />
         </div>
         <button type="submit">Cadastrar</button>
       </form>
