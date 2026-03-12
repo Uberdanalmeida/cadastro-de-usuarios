@@ -37,7 +37,7 @@ export default function App() {
 
       <div className="usuarios-cadastrados">
         {usuarios.map((usuario, index) => (
-          <p key={index}>{usuario.nome} - {usuario.email}</p>
+          <p key={index}><span>👤 {usuario.nome}</span> <span>✉️ {usuario.email}</span> <span>🗑</span></p>
         ))}
       </div>
     </div>

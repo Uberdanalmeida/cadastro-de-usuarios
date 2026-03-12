@@ -72,3 +72,9 @@ button:hover {
   padding: 32px;
   border-radius: 10px;
 }
+
+span {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
