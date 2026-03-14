@@ -63,7 +63,7 @@ export default function App() {
             <p key={index}>
               <span>👤 {usuario.nome}</span>
               <span>✉️ {usuario.email}</span>
-              <span onClick={() => removerUsuario(index)}> 🗑 </span>
+              <span className="lixeira" onClick={() => removerUsuario(index)}> 🗑 </span>
             </p>
           ))}
         </div>

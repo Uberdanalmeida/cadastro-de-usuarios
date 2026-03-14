@@ -78,3 +78,9 @@ span {
   margin-bottom: 8px;
   font-weight: bold;
 }
+
+.lixeira {
+  color: red;
+  cursor: pointer;
+  font-size: 18px;
+}
