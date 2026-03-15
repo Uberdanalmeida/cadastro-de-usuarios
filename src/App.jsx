@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaUser, FaEnvelope, FaTrash } from "react-icons/fa";
+import { HiUser, HiMail, HiTrash } from "react-icons/hi";
 
 export default function App() {
   const [nome, setNome] = useState("");
@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Cadastro de Usuários</h1>
+      <h2 className="titulo-lista">Cadastro de Usuários</h2>
 
       <form action="">
         <div>
@@ -63,10 +63,10 @@ export default function App() {
           {usuarios.map((usuario, index) => (
 
           <div className="usuario" key={index}>
-              <span><FaUser /> {usuario.nome}</span>
-              <span><FaEnvelope /> {usuario.email}</span>
+              <span><HiUser /> {usuario.nome}</span>
+              <span><HiMail /> {usuario.email}</span>
               <span className="lixeira" onClick={() => removerUsuario(index)}>
-                <FaTrash />
+                <HiTrash />
               </span>
           </div>
           

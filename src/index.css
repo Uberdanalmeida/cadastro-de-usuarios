@@ -73,6 +73,11 @@ button:hover {
   border-radius: 10px;
 }
 
+.titulo-lista{
+  text-align: center;
+  margin-bottom: 16px;
+}
+
 span {
   margin-bottom: 8px;
   font-weight: bold;
@@ -88,8 +93,12 @@ span {
 
 .lixeira{
   cursor: pointer;
+  font-size: 18px;
+  color: #64748b;
+  transition: 0.2s;
 }
 
 .lixeira:hover{
-  color: red;
+  color: #ef4444;
+  transform: scale(1.2);
 }
