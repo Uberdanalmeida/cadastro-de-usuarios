@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaUser, FaEnvelope, FaTrash } from "react-icons/fa";
 
 export default function App() {
   const [nome, setNome] = useState("");
@@ -62,9 +63,11 @@ export default function App() {
           {usuarios.map((usuario, index) => (
 
           <div className="usuario" key={index}>
-              <span>👤 {usuario.nome}</span>
-              <span>✉️ {usuario.email}</span>
-              <span className="lixeira" onClick={() => removerUsuario(index)}> 🗑 </span>
+              <span><FaUser /> {usuario.nome}</span>
+              <span><FaEnvelope /> {usuario.email}</span>
+              <span className="lixeira" onClick={() => removerUsuario(index)}>
+                <FaTrash />
+              </span>
           </div>
           
           ))}
