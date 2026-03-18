@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HiUser, HiMail, HiTrash } from "react-icons/hi";
 
 export default function App() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState(() => {
+  const dadosSalvos = localStorage.getItem("usuarios");
+  return dadosSalvos ? JSON.parse(dadosSalvos) : [];
+});
+
+  useEffect(() => {
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }, [usuarios]);
 
   function handleSubmit(event) {
     event.preventDefault();
