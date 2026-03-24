@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { HiUser, HiMail, HiTrash } from "react-icons/hi";
+import "./App.css";
+import axios from "axios";
 
 export default function App() {
   const [nome, setNome] = useState("");
