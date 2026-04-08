@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import "./index.css";
 import { HiUser, HiMail, HiTrash } from "react-icons/hi";
 import axios from "axios";
 
 // Defina a URL base para facilitar
-const api = axios.create({ baseURL: "http://localhost:3001" });
+const api = axios.create({ baseURL: "http://127.0.0.1:3001" });
 
 export default function App() {
   const [nome, setNome] = useState("");
