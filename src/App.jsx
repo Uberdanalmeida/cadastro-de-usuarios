@@ -44,12 +44,18 @@ export default function App() {
     }
   }
 
-  function removerUsuario(id) {
-    // Aqui você deve fazer um api.delete no futuro. 
-    // Por enquanto, filtrando localmente:
+  async function removerUsuario(id) {
+  try {
+    // 1. Avisa o servidor para deletar
+    await api.delete(`/usuarios/${id}`); 
+    
+    // 2. Atualiza a tela removendo o usuário da lista
     const novaLista = usuarios.filter((usuario) => usuario.id !== id);
     setUsuarios(novaLista);
+  } catch (error) {
+    alert("Erro ao remover usuário do servidor");
   }
+}
 
   return (
     <div className="App">
