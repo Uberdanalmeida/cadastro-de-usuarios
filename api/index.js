@@ -1,30 +1,46 @@
 import express from 'express';
-import cors from 'cors'; // Importante adicionar
+import cors from 'cors';
+import { createClient } from '@supabase/supabase-js';
+
+import 'dotenv/config'; // Isso carrega o arquivo .env automaticamente
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Permite que o React acesse a API
+app.use(cors());
 
-let usuarios = [];
+// Agora, em vez de colar o texto direto, você usa o process.env
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
 
-app.get('/usuarios', (req, res) => {
-  res.json(usuarios);
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// LISTAR USUÁRIOS
+app.get('/usuarios', async (req, res) => {
+  const { data, error } = await supabase.from('usuarios').select('*');
+  if (error) return res.status(400).json(error);
+  res.json(data);
 });
 
-app.post('/usuarios', (req, res) => {
+// CADASTRAR USUÁRIO
+app.post('/usuarios', async (req, res) => {
   const { nome, email, senha } = req.body;
-  const novoUsuario = { id: Date.now(), nome, email, senha }; // id único melhor
-  usuarios.push(novoUsuario);
-  res.status(201).json(novoUsuario);
+  const { data, error } = await supabase
+    .from('usuarios')
+    .insert([{ nome, email, senha }])
+    .select();
+
+  if (error) return res.status(400).json(error);
+  res.status(201).json(data[0]);
 });
 
-app.delete('/usuarios/:id', (req, res) => {
+// DELETAR USUÁRIO
+app.delete('/usuarios/:id', async (req, res) => {
   const { id } = req.params;
-  usuarios = usuarios.filter(u => u.id !== Number(id));
+  const { error } = await supabase.from('usuarios').delete().eq('id', id);
+  if (error) return res.status(400).json(error);
   res.status(204).send();
 });
 
-// Mudando para 3001 para evitar conflito com portas padrão de frontend
 app.listen(3001, () => {
-  console.log('Server is running on port 3001');
+  console.log('Servidor conectado ao Supabase na porta 3001');
 });
