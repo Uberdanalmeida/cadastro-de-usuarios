@@ -1,3 +1,5 @@
+![Cadastro de Usuários](Imagem/cadastro.png)
+
 # 🚀 Cadastro de Usuários Full Stack
 
 Bem-vindo ao meu projeto de Cadastro de Usuários! Este é um sistema completo onde o front-end conversa com um servidor real, que por sua vez guarda as informações em um banco de dados na nuvem. Adeus, dados que sumiam ao dar refresh! 😎
