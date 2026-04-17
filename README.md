@@ -1,4 +1,4 @@
-![Cadastro de Usuários](Imagem/cadastro.png)
+![Cadastro de Usuários](imagem/cadastro.png)
 
 # 🚀 Cadastro de Usuários Full Stack
 
