@@ -83,12 +83,20 @@ span {
   font-weight: bold;
 }
 
-.usuario{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
+/* No seu arquivo index.css */
+.usuario {
+    display: flex;
+    align-items: center; /* Isso centraliza o ícone com o texto verticalmente */
+    justify-content: space-between; /* Isso coloca o ícone e o texto em lados opostos */
+    gap: 10px;           /* Dá um espaço entre o ícone e o texto */
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.usuario span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .lixeira{
