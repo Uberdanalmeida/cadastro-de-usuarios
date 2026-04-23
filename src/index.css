@@ -110,3 +110,40 @@ span {
   color: #ef4444;
   transform: scale(1.2);
 }
+
+/* Media Query para telas de até 600px (Celulares) */
+@media (max-width: 600px) {
+  
+  .App {
+    padding: 20px 10px; /* Diminui o respiro lateral no mobile */
+    width: 100%;
+  }
+
+  form {
+    width: 100%;        /* O formulário passa a ocupar a largura total disponível */
+    max-width: 100%;    /* Garante que não ultrapasse a tela */
+    padding: 20px;      /* Diminui o padding interno para sobrar mais espaço pros inputs */
+  }
+
+  .usuarios-cadastrados {
+    padding: 20px;      /* Ajusta a lista de usuários também */
+  }
+
+  .usuario {
+    flex-direction: column; /* Coloca Nome, Email e Lixeira um abaixo do outro se o espaço acabar */
+    align-items: flex-start; /* Alinha tudo à esquerda */
+    gap: 12px;
+    position: relative;
+  }
+
+  .lixeira {
+    position: absolute; /* Deixa a lixeira no cantinho superior direito do card */
+    right: 0;
+    top: 15px;
+  }
+
+  .usuario span {
+    font-size: 14px;    /* Diminui um pouco a fonte para caber em telas pequenas */
+    word-break: break-all; /* Evita que emails longos quebrem o layout */
+  }
+}
