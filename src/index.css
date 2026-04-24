@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -35,8 +35,8 @@ form {
 }
 
 div > label {
-    margin-right: 3px;
-  }
+  margin-right: 3px;
+}
 
 label {
   font-weight: bold;
@@ -73,7 +73,7 @@ button:hover {
   border-radius: 10px;
 }
 
-.titulo-lista{
+.titulo-lista {
   text-align: center;
   margin-bottom: 16px;
 }
@@ -85,65 +85,89 @@ span {
 
 /* No seu arquivo index.css */
 .usuario {
-    display: flex;
-    align-items: center; /* Isso centraliza o ícone com o texto verticalmente */
-    justify-content: space-between; /* Isso coloca o ícone e o texto em lados opostos */
-    gap: 10px;           /* Dá um espaço entre o ícone e o texto */
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
+  display: flex;
+  align-items: center; /* Isso centraliza o ícone com o texto verticalmente */
+  justify-content: space-between; /* Isso coloca o ícone e o texto em lados opostos */
+  gap: 10px; /* Dá um espaço entre o ícone e o texto */
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
 }
 
 .usuario span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.lixeira{
+.lixeira {
   cursor: pointer;
   font-size: 18px;
   color: #64748b;
   transition: 0.2s;
 }
 
-.lixeira:hover{
+.lixeira:hover {
   color: #ef4444;
   transform: scale(1.2);
 }
 
-/* Media Query para telas de até 600px (Celulares) */
 @media (max-width: 600px) {
-  
-  .App {
-    padding: 20px 10px; /* Diminui o respiro lateral no mobile */
-    width: 100%;
+
+  body {
+    display: block;
+    overflow-x: hidden;
   }
 
-  form {
-    width: 100%;        /* O formulário passa a ocupar a largura total disponível */
-    max-width: 100%;    /* Garante que não ultrapasse a tela */
-    padding: 20px;      /* Diminui o padding interno para sobrar mais espaço pros inputs */
+  .App {
+    padding: 24px 14px;
+  }
+
+  form, .usuarios-cadastrados {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 12px;
   }
 
   .usuarios-cadastrados {
-    padding: 20px;      /* Ajusta a lista de usuários também */
+    margin-top: 0;
   }
 
   .usuario {
-    flex-direction: column; /* Coloca Nome, Email e Lixeira um abaixo do outro se o espaço acabar */
-    align-items: flex-start; /* Alinha tudo à esquerda */
-    gap: 12px;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "nome lixeira" "email lixeira";
+    gap: 10px;
+    padding: 18px;
+    width: 100%;
+    margin-bottom: 14px;
+    border-radius: 12px;
   }
 
-  .lixeira {
-    position: absolute; /* Deixa a lixeira no cantinho superior direito do card */
-    right: 0;
-    top: 15px;
+  .usuario span:nth-child(1) {
+    grid-area: nome;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .usuario span:nth-child(2) {
+    grid-area: email;
+    font-size: 14px;
+    color: #6b7280;
+    word-break: break-word;
+  }
+
+  .usuario .lixeira {
+    grid-area: lixeira;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
   }
 
   .usuario span {
-    font-size: 14px;    /* Diminui um pouco a fonte para caber em telas pequenas */
-    word-break: break-all; /* Evita que emails longos quebrem o layout */
+    margin: 0;
+    gap: 8px;
   }
 }
