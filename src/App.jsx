@@ -27,14 +27,14 @@ export default function App() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    
+
     const novoUsuario = { nome, email, senha };
 
     try {
       const resposta = await api.post("/usuarios", novoUsuario);
       // Atualiza a lista com o que veio do servidor (que contém o ID)
       setUsuarios([...usuarios, resposta.data]);
-      
+
       // Limpar campos
       setNome("");
       setEmail("");
@@ -45,34 +45,54 @@ export default function App() {
   }
 
   async function removerUsuario(id) {
-  try {
-    // 1. Avisa o servidor para deletar
-    await api.delete(`/usuarios/${id}`); 
-    
-    // 2. Atualiza a tela removendo o usuário da lista
-    const novaLista = usuarios.filter((usuario) => usuario.id !== id);
-    setUsuarios(novaLista);
-  } catch (error) {
-    alert("Erro ao remover usuário do servidor");
+    try {
+      // 1. Avisa o servidor para deletar
+      await api.delete(`/usuarios/${id}`);
+
+      // 2. Atualiza a tela removendo o usuário da lista
+      const novaLista = usuarios.filter((usuario) => usuario.id !== id);
+      setUsuarios(novaLista);
+    } catch (error) {
+      alert("Erro ao remover usuário do servidor");
+    }
   }
-}
 
   return (
     <div className="App">
       <h2 className="titulo-lista">Cadastro de Usuários</h2>
 
-      <form onSubmit={handleSubmit}> {/* Use onSubmit no form, não onClick no button */}
+      <form onSubmit={handleSubmit}>
+        {" "}
+        {/* Use onSubmit no form, não onClick no button */}
         <div>
           <label htmlFor="nome">Nome:</label>
-          <input type="text" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
+          <input
+            type="text"
+            id="nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required
+          />
         </div>
         <div>
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
         <div>
           <label htmlFor="senha">Senha:</label>
-          <input type="password" id="senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+          <input
+            type="password"
+            id="senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
         </div>
         <button type="submit">Cadastrar</button>
       </form>
@@ -80,10 +100,19 @@ export default function App() {
       {usuarios.length > 0 && (
         <div className="usuarios-cadastrados">
           {usuarios.map((usuario) => (
-            <div className="usuario" key={usuario.id}> {/* Use o ID do banco, não o index */}
-              <span><HiUser /> {usuario.nome}</span>
-              <span><HiMail /> {usuario.email}</span>
-              <span className="lixeira" onClick={() => removerUsuario(usuario.id)}>
+            <div className="usuario" key={usuario.id}>
+              {" "}
+              {/* Use o ID do banco, não o index */}
+              <span>
+                <HiUser /> {usuario.nome}
+              </span>
+              <span>
+                <HiMail /> {usuario.email}
+              </span>
+              <span
+                className="lixeira"
+                onClick={() => removerUsuario(usuario.id)}
+              >
                 <HiTrash />
               </span>
             </div>

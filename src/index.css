@@ -112,7 +112,6 @@ span {
 }
 
 @media (max-width: 600px) {
-
   body {
     display: block;
     overflow-x: hidden;
@@ -122,7 +121,8 @@ span {
     padding: 24px 14px;
   }
 
-  form, .usuarios-cadastrados {
+  form,
+  .usuarios-cadastrados {
     width: 100%;
     max-width: 100%;
     padding: 20px;
