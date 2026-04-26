@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./index.css";
 import { HiUser, HiMail, HiTrash } from "react-icons/hi";
-import axios from "axios";
+import { createClient } from "@supabase/supabase-js";
 
-// Defina a URL base para facilitar
-const api = axios.create({ baseURL: "http://127.0.0.1:3001" });
+// Configuração do Supabase
+const supabaseUrl = "https://ogayxnupzfaqkihhadml.supabase.co";
+const supabaseKey = "sb_publishable_lPl8Ga51daNlXdjC9soU0g_R-Z6fwDt";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function App() {
   const [nome, setNome] = useState("");
@@ -16,8 +18,8 @@ export default function App() {
   useEffect(() => {
     async function carregarUsuarios() {
       try {
-        const resposta = await api.get("/usuarios");
-        setUsuarios(resposta.data);
+        const { data } = await supabase.from("usuarios").select("*");
+        setUsuarios(data || []);
       } catch (error) {
         console.error("Erro ao buscar usuários", error);
       }
@@ -31,23 +33,31 @@ export default function App() {
     const novoUsuario = { nome, email, senha };
 
     try {
-      const resposta = await api.post("/usuarios", novoUsuario);
+      const { data, error } = await supabase
+        .from("usuarios")
+        .insert([novoUsuario])
+        .select();
+
+      if (error) throw error;
+
       // Atualiza a lista com o que veio do servidor (que contém o ID)
-      setUsuarios([...usuarios, resposta.data]);
+      setUsuarios([...usuarios, data[0]]);
 
       // Limpar campos
       setNome("");
       setEmail("");
       setSenha("");
     } catch (error) {
-      alert("Erro ao cadastrar usuário");
+      alert("Erro ao cadastrar usuário: " + error.message);
     }
   }
 
   async function removerUsuario(id) {
     try {
       // 1. Avisa o servidor para deletar
-      await api.delete(`/usuarios/${id}`);
+      const { error } = await supabase.from("usuarios").delete().eq("id", id);
+
+      if (error) throw error;
 
       // 2. Atualiza a tela removendo o usuário da lista
       const novaLista = usuarios.filter((usuario) => usuario.id !== id);
